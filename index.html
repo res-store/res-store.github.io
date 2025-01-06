@@ -643,37 +643,35 @@ Leveling ready
 		<div style="margin-top:5%;margin-bottom:5%;" class="hero-image">
 		
 		<h1>Testimoni :</h1><br>
-			<div class="magnific-img">
-				<a class="image-popup-vertical-fit" href="testi1.jpg" title="testi1.jpg">
-					<img src="testi1.jpg" alt="9.jpg" />
-					<i class="fa fa-search-plus" aria-hidden="true"></i>
-				</a>
-			</div>
-			<div class="magnific-img">
-				<a class="image-popup-vertical-fit" href="testi2.jpg" title="testi2.jpg">
-					<img src="testi2.jpg" alt="9.jpg" />
-					<i class="fa fa-search-plus" aria-hidden="true"></i>
-				</a>
-			</div>
-			<div class="magnific-img">
-				<a class="image-popup-vertical-fit" href="testi3.jpg" title="testi3.jpg">
-					<img src="testi3.jpg" alt="9.jpg" />
-					<i class="fa fa-search-plus" aria-hidden="true"></i>
-				</a>
-			</div>
-			<div class="magnific-img">
-				<a class="image-popup-vertical-fit" href="testi4.jpg" title="testi4.jpg">
-					<img src="testi4.jpg" alt="9.jpg" />
-					<i class="fa fa-search-plus" aria-hidden="true"></i>
-				</a>
-			</div>
-			<div class="magnific-img">
-				<a class="image-popup-vertical-fit" href="testi5.jpg" title="testi5.jpg">
-					<img src="testi5.jpg" alt="9.jpg" />
-					<i class="fa fa-search-plus" aria-hidden="true"></i>
-				</a>
-			</div>
-		</div>	
+			 <script>
+    // Array of image details
+    const images = [
+      { src: 'testi1.jpg', title: 'testi1.jpg', alt: '9.jpg' },
+      { src: 'testi2.jpg', title: 'testi2.jpg', alt: '9.jpg' },
+      { src: 'testi3.jpg', title: 'testi3.jpg', alt: '9.jpg' },
+      { src: 'testi4.jpg', title: 'testi4.jpg', alt: '9.jpg' },
+      { src: 'testi5.jpg', title: 'testi5.jpg', alt: '9.jpg' },
+      { src: 'testi6.jpg', title: 'testi6.jpg', alt: '9.jpg' },
+    ];
+
+    // Container for images
+    const container = document.getElementById('image-container');
+
+    // Generate HTML dynamically
+    images.forEach(image => {
+      const div = document.createElement('div');
+      div.className = 'magnific-img';
+
+      div.innerHTML = `
+        <a class="image-popup-vertical-fit" href="${image.src}" title="${image.title}">
+          <img src="${image.src}" alt="${image.alt}" />
+          <i class="fa fa-search-plus" aria-hidden="true"></i>
+        </a>
+      `;
+
+      container.appendChild(div);
+    });
+  </script>
 		</section>
 		<div class="clear"></div>
     </main>
