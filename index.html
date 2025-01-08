@@ -17,7 +17,40 @@
 			background: #f9f9f9;
 			color: #333;
 		}
-		
+		.tabs {
+            display: flex;
+            border-bottom: 2px solid #ccc;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            background-color: #f9f9f9;
+        }
+        .tab.active {
+            background-color: #fff;
+            font-weight: bold;
+            border-top: 2px solid #007bff;
+            border-left: 2px solid #007bff;
+            border-right: 2px solid #007bff;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 2px solid #ccc;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        pre {
+            font-family: monospace;
+            font-size: 1em;
+            white-space: pre-wrap;
+        }
 		/* Header Styling */
 		header {
 			display: flex;
@@ -93,7 +126,7 @@
 		}
 		
 		.hero-image img {
-			width: 300px;
+			width: 400px;
 			border-radius: 10px;
 		}
 		
@@ -599,14 +632,26 @@
 	</script>
 </head>
 <body>
+
     <main>
+	
         <section id="home" class="hero">
+		
             <div class="hero-text">
-				<h5 class="typing-demo2">Rebellion Elite Squad</h5>
-				<h5 class="typing-demo">(store)</h5>
+				
                 <!-- Scrollable pre -->
                 <div style="max-height: auto; overflow-y: auto; overflow-x: hidden; margin-top: 5%; margin-bottom: 5%;">
-                    <pre style="font-family: monospace;font-size: 1em;">
+				<h5 class="typing-demo2">Rebellion Elite Squad</h5>
+				<h5 class="typing-demo">(store)</h5><br>
+                    <div class="tabs">
+    <div class="tab active" data-tab="1">Joki Res</div>
+    <div class="tab" data-tab="2">Clan Res</div>
+	
+</div>
+
+<!-- Tab Content -->
+<div class="tab-content active" id="tab-1">
+    <pre>
 Harga joki include :
 claim harian, moai, TP, SS, Eudomon, MH, HH
 
@@ -630,16 +675,13 @@ Shadow war burn sehari 10ribu
 Order banyak bisa nego
 
 Leveling ready 
------------------------------------------------------
 
-                </div>
-                <a href="https://wa.me/+6282136226559" target="_blank" class="btn whatsapp-btn">
-                    Gaskan di mari
-                </a>
-            </div>
-            <div style="margin-top:2%;" class="hero-image">
-                <img src="elainne.jpg" alt="Anime Girl with Umbrella">
-				<pre style="font-family: monospace;font-size: 1em;">
+<a href="https://wa.me/+6282136226559" target="_blank" class="btn whatsapp-btn">Gaskan di mari</a>
+    </pre>
+</div>
+
+<div class="tab-content " id="tab-2">
+    <pre>
 Rebellion Elite Squad [1100]
 
 Season 32 Recruitment:
@@ -656,9 +698,67 @@ Season 29 top 10
 Season 30 top 9
 Season 31 top 10
 Season 32 top 7
-					</pre>
+
+<a href="https://wa.me/+6282136226559" target="_blank" class="btn whatsapp-btn">Gaskan di mari</a>
+    </pre>
+</div>
+
+<script>
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active class from all tabs and contents
+            tabs.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // Add active class to clicked tab and corresponding content
+            tab.classList.add('active');
+            const tabId = tab.getAttribute('data-tab');
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+        });
+    });
+</script>
+
+                </div>
+                
             </div>
-			
+            <div style="margin-top:2%;" class="hero-image">
+				
+                <img id="dynamic-image" src="elainne.jpg" alt="Anime Girl with Umbrella">
+            </div>
+			<script>
+				const dynamicImage = document.getElementById('dynamic-image');
+				
+				async function fetchAnimeImg() {
+					try {
+						const response = await fetch('https://api.waifu.pics/sfw/waifu');
+						const data = await response.json();
+						return data.url;
+					} catch (error) {
+						console.error('Error fetching image:', error);
+						return null;
+					}
+				}
+				
+				async function updateImage() {
+					const imgUrl = await fetchAnimeImg();
+					if (imgUrl) {
+						dynamicImage.src = imgUrl;
+						dynamicImage.alt = "Anime Image";
+					} else {
+						console.error("Failed to update image.");
+					}
+				}
+				
+				// Auto-reload the image every 10 seconds
+				setInterval(updateImage, 3000);
+				
+				// Load the first image on page load
+				updateImage();
+				
+			</script>
         </section>
 		<section id="home" class="hero">
 		
